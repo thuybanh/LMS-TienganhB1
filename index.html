@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>English Vocabulary</title>
+    <title>Vocabulary</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,29 +14,29 @@
 
     <div class="app">
 
-        <!-- MENU -->
+        <!-- SIDEBAR -->
         <aside class="sidebar">
 
             <h2>English Vocabulary</h2>
 
             <div id="lessonMenu"></div>
 
-            <button class="test-menu" onclick="startTest()">
-                Test bài này
+            <button id="testButton" class="test-button">
+                Bài 1
             </button>
 
         </aside>
 
 
-        <!-- NỘI DUNG -->
+        <!-- MAIN -->
         <main class="main">
 
-            <div class="content" id="content">
+            <div id="content" class="content">
 
                 <h1>English Vocabulary</h1>
 
-                <p>
-                    Chọn một bài ở menu bên trái.
+                <p class="description">
+                    Chọn bài.
                 </p>
 
             </div>
@@ -48,4 +49,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>

@@ -4,95 +4,133 @@
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background: #f5f5f5;
+
     color: #222;
 }
 
 
 /* =========================
-   LAYOUT
+   TOÀN BỘ APP
 ========================= */
 
 .app {
     min-height: 100vh;
+
     display: flex;
 }
 
 
 /* =========================
-   MENU
+   MENU BÊN TRÁI
 ========================= */
 
 .sidebar {
-    width: 220px;
+    width: 230px;
+
     height: 100vh;
 
     position: fixed;
+
     left: 0;
     top: 0;
 
     background: white;
+
     border-right: 1px solid #ddd;
 
     padding: 25px 15px;
+
+    overflow-y: auto;
 }
+
 
 .sidebar h2 {
-    font-size: 20px;
     margin: 0 10px 25px;
+
+    font-size: 20px;
+
+    font-weight: 600;
 }
 
 
-/* Nút bài */
+/* =========================
+   NÚT BÀI
+========================= */
 
 .lesson-button {
+    display: block;
+
     width: 100%;
 
-    padding: 11px 12px;
+    padding: 11px 13px;
+
     margin-bottom: 4px;
 
     border: none;
-    border-radius: 6px;
+
+    border-radius: 7px;
 
     background: transparent;
 
+    color: #222;
+
     text-align: left;
+
     font-size: 15px;
 
     cursor: pointer;
 }
+
 
 .lesson-button:hover {
     background: #eeeeee;
 }
 
+
 .lesson-button.active {
     background: #e5e5e5;
-    font-weight: bold;
+
+    font-weight: 600;
 }
 
 
-/* Nút test */
+/* =========================
+   NÚT TEST
+========================= */
 
-.test-menu {
+.test-button {
+    display: block;
+
     width: 100%;
 
     margin-top: 20px;
+
     padding: 13px;
 
     border: none;
+
     border-top: 1px solid #ddd;
 
     background: white;
 
+    color: #222;
+
     text-align: left;
+
     font-size: 15px;
 
     cursor: pointer;
 }
 
-.test-menu:hover {
+
+.test-button:hover {
     background: #eeeeee;
 }
 
@@ -102,19 +140,38 @@ body {
 ========================= */
 
 .main {
-    margin-left: 220px;
-    width: calc(100% - 220px);
+    width: calc(100% - 230px);
 
-    padding: 45px 30px;
+    margin-left: 230px;
+
+    min-height: 100vh;
+
+    padding: 50px 30px;
 }
+
 
 .content {
+    width: 100%;
+
     max-width: 700px;
-    margin: auto;
+
+    margin: 0 auto;
 }
+
 
 .content h1 {
     margin-top: 0;
+
+    margin-bottom: 8px;
+
+    font-size: 28px;
+}
+
+
+.description {
+    color: #777;
+
+    margin-bottom: 30px;
 }
 
 
@@ -126,6 +183,7 @@ body {
     background: white;
 
     border: 1px solid #ddd;
+
     border-radius: 10px;
 
     padding: 35px;
@@ -133,47 +191,64 @@ body {
 
 
 /* =========================
-   QUESTION
+   TIẾN ĐỘ
 ========================= */
 
 .progress {
-    color: #777;
-    font-size: 14px;
-
     margin-bottom: 30px;
-}
 
-.question-type {
     color: #777;
+
     font-size: 14px;
-
-    margin-bottom: 10px;
-}
-
-.question {
-    font-size: 30px;
-    font-weight: bold;
-
-    margin-bottom: 25px;
 }
 
 
 /* =========================
-   INPUT
+   HƯỚNG DẪN
+========================= */
+
+.question-type {
+    margin-bottom: 12px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   CÂU HỎI
+========================= */
+
+.question {
+    margin-bottom: 25px;
+
+    font-size: 32px;
+
+    font-weight: 600;
+
+    line-height: 1.35;
+}
+
+
+/* =========================
+   Ô NHẬP
 ========================= */
 
 .answer-input {
     width: 100%;
 
-    padding: 13px;
-
-    font-size: 17px;
+    padding: 14px;
 
     border: 1px solid #aaa;
-    border-radius: 6px;
+
+    border-radius: 7px;
 
     outline: none;
+
+    font-size: 17px;
 }
+
 
 .answer-input:focus {
     border-color: #333;
@@ -181,19 +256,22 @@ body {
 
 
 /* =========================
-   BUTTON
+   NÚT KIỂM TRA
 ========================= */
 
 .check-button {
     width: 100%;
 
     margin-top: 12px;
+
     padding: 13px;
 
     border: none;
-    border-radius: 6px;
+
+    border-radius: 7px;
 
     background: #222;
+
     color: white;
 
     font-size: 16px;
@@ -201,8 +279,16 @@ body {
     cursor: pointer;
 }
 
+
 .check-button:hover {
     background: #000;
+}
+
+
+.check-button:disabled {
+    opacity: 0.5;
+
+    cursor: default;
 }
 
 
@@ -213,49 +299,169 @@ body {
 .feedback {
     margin-top: 18px;
 
-    padding: 13px;
+    padding: 16px;
 
-    border-radius: 6px;
+    border-radius: 7px;
 
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
-.correct {
+
+.feedback.correct {
     background: #edf7ed;
+
     color: #176b25;
 }
 
-.wrong {
+
+.feedback.wrong {
     background: #fff0f0;
+
     color: #9b2222;
 }
 
 
+.feedback-title {
+    margin-bottom: 8px;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+.word-info {
+    margin-top: 10px;
+
+    color: #333;
+}
+
+
+.correct-answer {
+    margin-top: 5px;
+
+    margin-bottom: 10px;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
 /* =========================
-   RESULT
+   NÚT CÂU TIẾP
+========================= */
+
+.next-button {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border: 1px solid #aaa;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+.next-button:hover {
+    background: #f0f0f0;
+}
+
+
+/* =========================
+   KẾT QUẢ
 ========================= */
 
 .result {
     text-align: center;
 }
 
-.score {
-    font-size: 40px;
-    font-weight: bold;
 
-    margin: 20px 0;
+.result-title {
+    color: #777;
 }
+
+
+.score {
+    margin: 20px 0;
+
+    font-size: 42px;
+
+    font-weight: 600;
+}
+
+
+.result-detail {
+    margin-bottom: 25px;
+
+    color: #555;
+}
+
+
+/* =========================
+   TỪ SAI
+========================= */
 
 .wrong-list {
     margin-top: 25px;
 
-    text-align: left;
+    padding-top: 20px;
 
     border-top: 1px solid #ddd;
+
+    text-align: left;
 }
 
+
+.wrong-list h3 {
+    margin-top: 0;
+}
+
+
 .wrong-item {
-    padding: 12px 0;
+    padding: 11px 0;
 
     border-bottom: 1px solid #eee;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 180px;
+    }
+
+
+    .main {
+        width: calc(100% - 180px);
+
+        margin-left: 180px;
+
+        padding: 30px 15px;
+    }
+
+
+    .card {
+        padding: 25px;
+    }
+
+
+    .question {
+        font-size: 25px;
+    }
+
 }
