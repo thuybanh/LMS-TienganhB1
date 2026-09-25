@@ -222,7 +222,7 @@ const lessons = {
 
 
 // ============================================================
-// BIẾN
+// BIẾN CHƯƠNG TRÌNH
 // ============================================================
 
 let currentLesson = 1;
@@ -238,6 +238,8 @@ let wrongWords = [];
 let mode = "learn";
 
 let direction = "EN_TO_VI";
+
+let answered = false;
 
 
 // ============================================================
@@ -304,7 +306,7 @@ function normalize(text) {
 
 
 // ============================================================
-// TẠO MENU BÀI 1 → BÀI 10
+// TẠO MENU
 // ============================================================
 
 function createMenu() {
@@ -350,8 +352,6 @@ function selectLesson(number) {
     currentLesson = number;
 
 
-    // Active menu
-
     const buttons =
         document.querySelectorAll(
             ".lesson-button"
@@ -373,8 +373,6 @@ function selectLesson(number) {
             .classList.add("active");
     }
 
-
-    // Bài chưa có dữ liệu
 
     if (!lessons[number]) {
 
@@ -401,7 +399,7 @@ function selectLesson(number) {
 
 
 // ============================================================
-// BẮT ĐẦU HỌC
+// HỌC TỪ VỰNG
 // ============================================================
 
 function startLearning() {
@@ -419,13 +417,12 @@ function startLearning() {
 
     wrongWords = [];
 
-
     showQuestion();
 }
 
 
 // ============================================================
-// BẮT ĐẦU TEST
+// TEST
 // ============================================================
 
 function startTest() {
@@ -454,19 +451,16 @@ function startTest() {
 
     mode = "test";
 
-
     questions =
         shuffle(
             lessons[currentLesson]
         );
-
 
     currentQuestion = 0;
 
     score = 0;
 
     wrongWords = [];
-
 
     showQuestion();
 }
@@ -478,20 +472,19 @@ function startTest() {
 
 function showQuestion() {
 
+    answered = false;
+
+
     const word =
         questions[currentQuestion];
 
 
-    // Random chiều hỏi
+    // Random Anh → Việt / Việt → Anh
 
-    if (Math.random() < 0.5) {
-
-        direction = "EN_TO_VI";
-
-    } else {
-
-        direction = "VI_TO_EN";
-    }
+    direction =
+        Math.random() < 0.5
+            ? "EN_TO_VI"
+            : "VI_TO_EN";
 
 
     let question;
@@ -520,11 +513,13 @@ function showQuestion() {
     content.innerHTML = `
 
         <h1>
+
             ${mode === "test"
                 ? "Test"
                 : "Học từ vựng"}
 
             — Bài ${currentLesson}
+
         </h1>
 
 
@@ -533,8 +528,7 @@ function showQuestion() {
             <div class="progress">
 
                 Câu ${currentQuestion + 1}
-                /
-                ${questions.length}
+                / ${questions.length}
 
             </div>
 
@@ -566,7 +560,9 @@ function showQuestion() {
                 id="checkButton"
                 class="check-button"
             >
+
                 Kiểm tra
+
             </button>
 
 
@@ -591,32 +587,29 @@ function showQuestion() {
     input.focus();
 
 
+    // Click chuột để kiểm tra
+
     button.addEventListener(
         "click",
         checkAnswer
-    );
-
-
-    input.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (event.key === "Enter") {
-
-                checkAnswer();
-
-            }
-
-        }
     );
 }
 
 
 // ============================================================
-// KIỂM TRA
+// KIỂM TRA ĐÁP ÁN
 // ============================================================
 
 function checkAnswer() {
+
+    // Nếu đã trả lời rồi thì Enter sẽ sang câu tiếp
+    if (answered) {
+
+        nextQuestion();
+
+        return;
+    }
+
 
     const input =
         document.getElementById(
@@ -671,6 +664,9 @@ function checkAnswer() {
         userAnswer === correctAnswer;
 
 
+    answered = true;
+
+
     input.disabled = true;
 
     button.disabled = true;
@@ -717,7 +713,9 @@ function checkAnswer() {
                 id="nextButton"
                 class="next-button"
             >
+
                 Câu tiếp →
+
             </button>
 
         `;
@@ -783,12 +781,16 @@ function checkAnswer() {
                 id="nextButton"
                 class="next-button"
             >
+
                 Câu tiếp →
+
             </button>
 
         `;
     }
 
+
+    // Nút chuột "Câu tiếp"
 
     document
         .getElementById("nextButton")
@@ -800,17 +802,61 @@ function checkAnswer() {
 
 
 // ============================================================
+// ENTER
+// ============================================================
+
+// Enter hoạt động ở mọi câu:
+//
+// 1. Chưa trả lời:
+//    Enter = kiểm tra
+//
+// 2. Đã trả lời:
+//    Enter = câu tiếp
+//
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key !== "Enter") {
+            return;
+        }
+
+
+        // Không xử lý nếu đang ở textarea
+        if (
+            event.target.tagName === "TEXTAREA"
+        ) {
+            return;
+        }
+
+
+        event.preventDefault();
+
+
+        if (answered) {
+
+            nextQuestion();
+
+        } else {
+
+            checkAnswer();
+
+        }
+
+    }
+);
+
+
+// ============================================================
 // CÂU TIẾP
 // ============================================================
 
 function nextQuestion() {
 
-    currentQuestion++;
-
-
     if (
         currentQuestion >=
-        questions.length
+        questions.length - 1
     ) {
 
         showResult();
@@ -819,12 +865,15 @@ function nextQuestion() {
     }
 
 
+    currentQuestion++;
+
+
     showQuestion();
 }
 
 
 // ============================================================
-// KẾT QUẢ
+// HIỂN THỊ KẾT QUẢ
 // ============================================================
 
 function showResult() {
@@ -861,6 +910,7 @@ function showResult() {
                             </strong>
 
                             —
+
                             ${word.meaning}
 
                         </div>
@@ -869,6 +919,7 @@ function showResult() {
                     .join("")}
 
             </div>
+
         `;
     }
 
@@ -876,9 +927,11 @@ function showResult() {
     content.innerHTML = `
 
         <h1>
+
             ${mode === "test"
                 ? "Kết quả Test"
                 : "Hoàn thành"}
+
         </h1>
 
 
@@ -920,6 +973,7 @@ function showResult() {
             </button>
 
         </div>
+
     `;
 
 
@@ -951,14 +1005,10 @@ function showResult() {
 createMenu();
 
 
-// Nút Test bài này
-
 testButton.addEventListener(
     "click",
     startTest
 );
 
-
-// Mở Bài 1 ngay khi vào web
 
 selectLesson(1);
