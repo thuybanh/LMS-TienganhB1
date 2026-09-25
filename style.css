@@ -1,0 +1,261 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+
+.app {
+    min-height: 100vh;
+    display: flex;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.sidebar {
+    width: 220px;
+    height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    background: white;
+    border-right: 1px solid #ddd;
+
+    padding: 25px 15px;
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    margin: 0 10px 25px;
+}
+
+
+/* Nút bài */
+
+.lesson-button {
+    width: 100%;
+
+    padding: 11px 12px;
+    margin-bottom: 4px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+
+    text-align: left;
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.lesson-button:hover {
+    background: #eeeeee;
+}
+
+.lesson-button.active {
+    background: #e5e5e5;
+    font-weight: bold;
+}
+
+
+/* Nút test */
+
+.test-menu {
+    width: 100%;
+
+    margin-top: 20px;
+    padding: 13px;
+
+    border: none;
+    border-top: 1px solid #ddd;
+
+    background: white;
+
+    text-align: left;
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.test-menu:hover {
+    background: #eeeeee;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+
+    padding: 45px 30px;
+}
+
+.content {
+    max-width: 700px;
+    margin: auto;
+}
+
+.content h1 {
+    margin-top: 0;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    background: white;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    padding: 35px;
+}
+
+
+/* =========================
+   QUESTION
+========================= */
+
+.progress {
+    color: #777;
+    font-size: 14px;
+
+    margin-bottom: 30px;
+}
+
+.question-type {
+    color: #777;
+    font-size: 14px;
+
+    margin-bottom: 10px;
+}
+
+.question {
+    font-size: 30px;
+    font-weight: bold;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.answer-input {
+    width: 100%;
+
+    padding: 13px;
+
+    font-size: 17px;
+
+    border: 1px solid #aaa;
+    border-radius: 6px;
+
+    outline: none;
+}
+
+.answer-input:focus {
+    border-color: #333;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.check-button {
+    width: 100%;
+
+    margin-top: 12px;
+    padding: 13px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #222;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.check-button:hover {
+    background: #000;
+}
+
+
+/* =========================
+   FEEDBACK
+========================= */
+
+.feedback {
+    margin-top: 18px;
+
+    padding: 13px;
+
+    border-radius: 6px;
+
+    line-height: 1.5;
+}
+
+.correct {
+    background: #edf7ed;
+    color: #176b25;
+}
+
+.wrong {
+    background: #fff0f0;
+    color: #9b2222;
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+.result {
+    text-align: center;
+}
+
+.score {
+    font-size: 40px;
+    font-weight: bold;
+
+    margin: 20px 0;
+}
+
+.wrong-list {
+    margin-top: 25px;
+
+    text-align: left;
+
+    border-top: 1px solid #ddd;
+}
+
+.wrong-item {
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eee;
+}
